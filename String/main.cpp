@@ -7,9 +7,18 @@
 //
 
 #include <iostream>
+#include "ptr/shared.h"
+#include <cassert>
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    return 0;
+    using namespace my;
+    {
+        auto p1 = makeShared<int>(1);
+        assert(p1.number() == 1);
+        auto p2 = makeShared(p1);
+        assert(p1.number() == p2.number());
+        assert(p1.number() == 2);
+    }
+    
 }
+
