@@ -7,8 +7,10 @@
 //
 
 #include <iostream>
-#include "ptr/shared.h"
 #include <cassert>
+#include "ptr/shared.h"
+#include "string/String.hpp"
+#include "misc/type_name.h"
 
 int main(int argc, const char * argv[]) {
     using namespace my;
@@ -20,5 +22,14 @@ int main(int argc, const char * argv[]) {
         assert(p1.number() == 2);
     }
     
+    {
+        char * c = new char[1000];
+        strcpy(c, "string aisdajsd");
+        auto s = String ( c );
+        assert(strcmp(c, s.to_string().c_str()) == 0);
+//        assert(c == s.to_string().c_str());
+        
+//        std::cout << s.to_string() << '\n';
+    }
 }
 
